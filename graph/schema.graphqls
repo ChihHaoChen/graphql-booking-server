@@ -1,0 +1,39 @@
+scalar Time
+
+type User {
+  id: ID!
+  username: String!
+  email: String!
+  password: String!
+  avatarImage: String
+  bookedTravels: [Travel]
+}
+
+type Travel {
+  id: ID!
+  title: String!
+  description: String!
+  coverImage: String!
+  createdAt: Time!
+  startDate: Time!
+  endDate: Time!
+  location: String!
+  user: User!
+  soldout: Boolean!
+  clients: [User]!
+}
+
+type Query {
+  travels: [Travel]!
+  users: [User]!
+}
+
+input AuthInput {
+  email: String!
+  password: String!
+  rememberMe: Boolean!
+}
+
+type Mutation {
+  signUpUser(input: AuthInput!): User!
+}
